@@ -1,8 +1,8 @@
-From ubuntu:latest
-MAINTAINER Stylianos Karagiannis <stylianos.karagiannis@pdmfc.com>
+FROM debian:stretch-slim
 
-RUN apt update && apt install -y git lynis
-RUN useradd -d /pdm-security -U lynis
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN useradd -d /lynis-report-converter -U lynis
 
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -11,11 +11,11 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY . /pdm-security
+COPY . /lynis-report-converter
 
 USER lynis
 
-WORKDIR /pdm-security
+WORKDIR /lynis-report-converter
 
-ENTRYPOINT ["/pdm-security/lynis-report-converter.pl"]
+ENTRYPOINT ["/lynis-report-converter/lynis-report-converter.pl"]
 CMD ["--help"]
