@@ -2,7 +2,7 @@ From ubuntu:latest
 MAINTAINER Stylianos Karagiannis <stylianos.karagiannis@pdmfc.com>
 
 RUN apt update && apt install -y git lynis
-RUN useradd -d /lynis-report-converter -U lynis
+RUN useradd -d /pdm-security -U lynis
 
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -11,11 +11,11 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY . /lynis-report-converter
+COPY . /pdm-security
 
 USER lynis
 
-WORKDIR /lynis-report-converter
+WORKDIR /pdm-security
 
-ENTRYPOINT ["/lynis-report-converter/lynis-report-converter.pl"]
+ENTRYPOINT ["/pdm-security/lynis-report-converter.pl"]
 CMD ["--help"]
