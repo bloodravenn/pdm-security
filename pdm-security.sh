@@ -14,4 +14,4 @@ sudo docker run --rm -v ./log:/reports pdm-security -j /reports/report.json -i /
 sudo cp lynis-report.json /var/log/lynis-report.json
 cd ..
 sudo rm -rf  lynis-report-converter
-sudo apt remove lynis
+sudo ./chimera-linux
